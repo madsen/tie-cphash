@@ -5,7 +5,7 @@ package Tie::CPHash;
 #
 # Author: Christopher J. Madsen <ac608@yfn.ysu.edu>
 # Created: 08 Nov 1997
-# Version: $Revision: 0.1 $ ($Date: 1997/11/11 22:36:49 $)
+# Version: $Revision: 1.0 $ ($Date: 1998/01/15 21:14:25 $)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the same terms as Perl itself.
@@ -30,7 +30,7 @@ use vars qw(@ISA $VERSION);
 BEGIN
 {
     # Convert RCS revision number to d.ddd format:
-    $VERSION = sprintf('%d.%03d', '$Revision: 0.1 $ ' =~ /(\d+)\.(\d+)/);
+    $VERSION = sprintf('%d.%03d', '$Revision: 1.0 $ ' =~ /(\d+)\.(\d+)/);
 } # end BEGIN
 
 #=====================================================================
@@ -114,11 +114,75 @@ sub CLEAR
 } # end CLEAR
 
 #=====================================================================
+# Other Methods:
+#---------------------------------------------------------------------
+# Return the case of KEY.
+
+sub key
+{
+    my $v = $_[0]->{lc $_[1]};
+    ($v ? $v->[0] : undef);
+}
+
+#=====================================================================
 # Package Return Value:
 
 1;
 
 __END__
+
+=head1 NAME
+
+Tie::CPHash - Case preserving but case insensitive hash table
+
+=head1 SYNOPSIS
+
+    require Tie::CPHash;
+    tie %cphash, 'Tie::CPHash';
+
+    $cphash{'Hello World'} = 'Hi there!';
+    printf("The key `%s' was used to store `%s'.\n",
+           tied(%cphash)->key('HELLO WORLD'),
+           $cphash{'HELLO world'});
+
+=head1 DESCRIPTION
+
+The B<Tie::CPHash> provides a hash table that is case preserving but
+case insensitive.  This means that
+
+    $cphash{KEY}    $cphash{key}
+    $cphash{Key}    $cphash{keY}
+
+all refer to the same entry.  Also, the hash remembers which form of
+the key was last used to store the entry.  The C<keys> and C<each>
+functions will return the key that was used to set the value.
+
+An example should make this clear:
+
+    tie %h, 'Tie::CPHash';
+    $h{Hello} = 'World';
+    print $h{HELLO};            # Prints 'World'
+    print keys(%h);             # Prints 'Hello'
+    $h{HELLO} = 'WORLD';
+    print $h{hello};            # Prints 'WORLD'
+    print keys(%h);             # Prints 'HELLO'
+
+The additional C<key> method lets you fetch the case of a specific key:
+
+    # When run after the previous example, this prints 'HELLO':
+    print tied(%h)->key('Hello');
+
+(The C<tied> function returns the object that C<%h> is tied to.)
+
+If you need a case insensitive hash, but don't need to preserve case,
+just use C<$hash{lc $key}> instead of C<$hash{$key}>.  This has a lot
+less overhead than B<Tie::CPHash>.
+
+=head1 AUTHOR
+
+Christopher J. Madsen E<lt>F<ac608@yfn.ysu.edu>E<gt>
+
+=cut
 
 # Local Variables:
 # tmtrack-file-task: "Tie::CPHash.pm"

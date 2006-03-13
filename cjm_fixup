@@ -1,0 +1,3 @@
+#! /bin/sh
+
+vernum -pr $1 CPHash.pm README

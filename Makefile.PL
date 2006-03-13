@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.0 1998/01/15 21:30:49 Madsen Exp $
+# $Id$
 
 use ExtUtils::MakeMaker;
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
@@ -7,7 +7,10 @@ WriteMakefile(
     'NAME'	=> 'Tie::CPHash',
     'VERSION_FROM' => 'CPHash.pm', # finds $VERSION
     'dist'	=> {COMPRESS => 'gzip -9f', SUFFIX => 'gz',
-# This next line is just for my own use, you should comment it out:
-                    PREOP => 'cjm_fixup $(DISTVNAME)' # Converts CRLF to LF
-                   }
+                    (-e 'cjm_fixup'
+                     ? (PREOP => './cjm_fixup $(DISTVNAME)')
+                     : () ) },
+    ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
+      (ABSTRACT_FROM  => 'CPHash.pm', # retrieve abstract from module
+       AUTHOR         => 'Christopher J. Madsen <cjm@pobox.com>') : ()),
 );

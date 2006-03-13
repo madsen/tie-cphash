@@ -26,7 +26,10 @@ my(%h,$j,$test);
 tie(%h, 'Tie::CPHash');
 ok(1, 'tied %h');
 
-ok((not scalar %h), 'SCALAR empty');
+SKIP: {
+  skip 'SCALAR added in Perl 5.8.3', 1 unless $] >= 5.008003;
+  ok((not scalar %h), 'SCALAR empty');
+};
 
 $h{Hello} = 'World';
 $j = $h{HeLLo};
@@ -37,7 +40,10 @@ $h{World} = 'HW';
 $h{HELLO} = $h{World};
 is(tied(%h)->key('hello') => 'HELLO',  'last key HELLO');
 
-ok(scalar %h, 'SCALAR not empty');
+SKIP: {
+  skip 'SCALAR added in Perl 5.8.3', 1 unless $] >= 5.008003;
+  ok(scalar %h, 'SCALAR not empty');
+};
 
 # Local Variables:
 # mode: perl

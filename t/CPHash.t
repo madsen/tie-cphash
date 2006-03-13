@@ -1,7 +1,7 @@
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'
 #---------------------------------------------------------------------
-# $Id: test.pl,v 1.0 1998/01/15 21:28:38 Madsen Exp $
+# $Id$
 # Copyright 1997 Christopher J. Madsen
 #
 # This program is free software; you can redistribute it and/or modify
@@ -45,3 +45,7 @@ $h{World} = 'HW';
 $h{HELLO} = $h{World};
 print "not" unless tied(%h)->key('hello') eq 'HELLO';
 print "ok 4\n";
+
+# Local Variables:
+# mode: perl
+# End:

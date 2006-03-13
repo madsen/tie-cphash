@@ -1,7 +1,7 @@
-CPHash.pm			The Tie::CPHash module
 Changes				Revision history
-MANIFEST			See MANIFEST
+CPHash.pm			The Tie::CPHash module
 Makefile.PL			MakeMaker Makefile
+MANIFEST			See MANIFEST
+META.yml			Module meta-data (added by MakeMaker)
 README				About the Tie::CPHash module
 t/CPHash.t			Testing... 1, 2, 3, Testing... 1, 2, 3
-META.yml                                 Module meta-data (added by MakeMaker)

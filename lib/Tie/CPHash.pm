@@ -3,9 +3,9 @@ package Tie::CPHash;
 #
 # Copyright 1997 Christopher J. Madsen
 #
-# Author: Christopher J. Madsen <cjm@pobox.com>
+# Author: Christopher J. Madsen <perl@cjmweb.net>
 # Created: 08 Nov 1997
-# $Revision$  $Date$
+# $Id$
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the same terms as Perl itself.
@@ -27,7 +27,7 @@ use vars qw(@ISA $VERSION);
 #=====================================================================
 # Package Global Variables:
 
-$VERSION = '1.02';
+$VERSION = '1.03';
 
 #=====================================================================
 # Tied Methods:
@@ -183,12 +183,21 @@ If you need a case insensitive hash, but don't need to preserve case,
 just use C<$hash{lc $key}> instead of C<$hash{$key}>.  This has a lot
 less overhead than B<Tie::CPHash>.
 
+=head1 LICENSE
+
+Tie::CPHash is distributed under the same terms as Perl itself.
+
+This means it is distributed in the hope that it will be useful, but
+I<without any warranty>; without even the implied warranty of
+I<merchantability> or I<fitness for a particular purpose>.  See the
+GNU General Public License or the Artistic License for more details.
+
 =head1 AUTHOR
 
-Christopher J. Madsen E<lt>F<cjm@pobox.com>E<gt>
+Christopher J. Madsen E<lt>F<perl AT cjmweb.net>E<gt>
+
+Please send bug reports to F<bug-Tie-CPHash AT rt.cpan.org>, or
+use the web interface at
+L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Tie-CPHash>
 
 =cut
-
-# Local Variables:
-# tmtrack-file-task: "Tie::CPHash.pm"
-# End:

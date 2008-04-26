@@ -25,7 +25,8 @@ use base 'Module::Build';
 #=====================================================================
 # Package Global Variables:
 
-our $VERSION = '1.00';
+use vars qw($VERSION);
+$VERSION = '1.00';
 
 #=====================================================================
 sub ACTION_distdir
@@ -41,8 +42,8 @@ sub ACTION_distdir
 
   unlink $out or die;
 
-  open(IN,  '<', 'README') or die;
-  open(OUT, '>', $out)     or die;
+  open(IN,  '<README') or die;
+  open(OUT, ">$out")   or die;
 
   while (<IN>) {
     next if /^\$\$/;            # $$ indicates comment

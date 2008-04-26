@@ -7,7 +7,7 @@
 #---------------------------------------------------------------------
 
 use strict;
-use warnings;
+#use warnings;         # Wasn't core in 5.005
 
 use FindBin;
 use lib $FindBin::Bin; # Make sure we're using My_Build from our distribution
@@ -19,6 +19,9 @@ my $builder = My_Build->new(
   license            => 'perl',
   dist_author        => 'Christopher J. Madsen <perl@cjmweb.net>',
   dist_version_from  => 'lib/Tie/CPHash.pm',
+  requires => {
+      'perl'          => '5.005',
+  },
   build_requires => {
       'FindBin'       => 0,
       'File::Spec'    => 0,

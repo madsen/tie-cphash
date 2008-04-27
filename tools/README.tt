@@ -1,6 +1,6 @@
-$$Id$
-Tie::CPHash $%v%$
-Copyright 1997 Christopher J. Madsen
+[% # $Id$ %]
+Tie::CPHash  version [%version%], released [%date%]
+
 
 DESCRIPTION
 
@@ -14,7 +14,33 @@ DESCRIPTION
     the key was last used to store the entry.  The `keys' and `each'
     functions will return the key that was used to set the value.
 
-LICENSE
+
+
+INSTALLATION
+
+To install this module, run the following commands:
+
+    perl Build.PL
+    ./Build
+    ./Build test
+    ./Build install
+
+While Tie::CPHash should function with any version of Perl 5, the
+build system requires at least Perl 5.005.  To install on older
+versions of Perl, you'll have to manually copy lib/Tie/CPHash.pm to
+your Perl library search path.
+
+
+
+DEPENDENCIES
+
+None.
+
+
+
+COPYRIGHT AND LICENCE
+
+    Copyright 1997-2008 Christopher J. Madsen
 
     This program is free software; you can redistribute it and/or modify
     it under the same terms as Perl itself.

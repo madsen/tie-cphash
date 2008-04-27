@@ -9,12 +9,22 @@
 use strict;
 #use warnings;         # Wasn't core in 5.005
 
-use FindBin;
-use lib $FindBin::Bin; # Make sure we're using My_Build from our distribution
+use Module::Build;
+eval 'use Module::Build::DistVersion;';
+my $class = ($@ ? Module::Build->subclass(code => q{
+    sub ACTION_distdir {
+      print STDERR <<"END";
+\a\a\a\n
+This module uses Module::Build::DistVersion to automatically copy
+version numbers to the appropriate places.  You might want to install
+that and re-run Build.PL if you intend to create a distribution.
+\n
+END
+      (shift @_)->SUPER::ACTION_distdir(@_);
+    } })
+             : 'Module::Build::DistVersion'); # if we found it
 
-use My_Build;          # Our customized version of Module::Build
-
-my $builder = My_Build->new(
+my $builder = $class->new(
   module_name        => 'Tie::CPHash',
   license            => 'perl',
   dist_author        => 'Christopher J. Madsen <perl@cjmweb.net>',
@@ -30,7 +40,7 @@ my $builder = My_Build->new(
   },
   create_makefile_pl => 'passthrough',
   dynamic_config     => 0,
-  meta_merge         => { no_index => { file => ['My_Build.pm'] }},
+  meta_merge         => { no_index  => { directory => [ 'tools' ] }},
 );
 
 $builder->create_build_script();

@@ -1,7 +1,7 @@
 #---------------------------------------------------------------------
 package Tie::CPHash;
 #
-# Copyright 1997 Christopher J. Madsen
+# Copyright 1997-2008 Christopher J. Madsen
 #
 # Author: Christopher J. Madsen <perl@cjmweb.net>
 # Created: 08 Nov 1997
@@ -20,14 +20,13 @@ package Tie::CPHash;
 
 require 5.000;
 use strict;
-use vars qw(@ISA $VERSION);
-
-@ISA = qw();
+#use warnings;         # Wasn't core until 5.6.0
+use vars qw($VERSION);
 
 #=====================================================================
 # Package Global Variables:
 
-$VERSION = '1.03';
+$VERSION = '1.04';
 
 #=====================================================================
 # Tied Methods:
@@ -140,6 +139,11 @@ __END__
 
 Tie::CPHash - Case preserving but case insensitive hash table
 
+=head1 VERSION
+
+This document describes $Id$
+
+
 =head1 SYNOPSIS
 
     require Tie::CPHash;
@@ -152,7 +156,7 @@ Tie::CPHash - Case preserving but case insensitive hash table
 
 =head1 DESCRIPTION
 
-The B<Tie::CPHash> module provides a hash table that is case
+The Tie::CPHash module provides a hash table that is case
 preserving but case insensitive.  This means that
 
     $cphash{KEY}    $cphash{key}
@@ -181,23 +185,48 @@ The additional C<key> method lets you fetch the case of a specific key:
 
 If you need a case insensitive hash, but don't need to preserve case,
 just use C<$hash{lc $key}> instead of C<$hash{$key}>.  This has a lot
-less overhead than B<Tie::CPHash>.
+less overhead than Tie::CPHash.
 
-=head1 LICENSE
-
-Tie::CPHash is distributed under the same terms as Perl itself.
-
-This means it is distributed in the hope that it will be useful, but
-I<without any warranty>; without even the implied warranty of
-I<merchantability> or I<fitness for a particular purpose>.  See the
-GNU General Public License or the Artistic License for more details.
 
 =head1 AUTHOR
 
-Christopher J. Madsen E<lt>F<perl AT cjmweb.net>E<gt>
+Christopher J. Madsen  S<< C<< <perl AT cjmweb.net> >> >>
 
-Please send bug reports to F<bug-Tie-CPHash AT rt.cpan.org>, or
-use the web interface at
+Please report any bugs or feature requests to
+S<< C<< <bug-Tie-CPHash AT rt.cpan.org> >> >>,
+or through the web interface at
 L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Tie-CPHash>
+
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright 1997-2008 Christopher J. Madsen
+
+This module is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself. See L<perlartistic>.
+
+
+=head1 DISCLAIMER OF WARRANTY
+
+BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
+OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
+PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
+EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE
+ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH
+YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL
+NECESSARY SERVICING, REPAIR, OR CORRECTION.
+
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
+REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE
+LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL,
+OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
+THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
+RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
+FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
+SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
 
 =cut

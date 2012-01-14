@@ -1,0 +1,45 @@
+Tie-CPHash version {{$version}}, released {{$date}}
+
+
+This module provides a case preserving but case insensitive hash.
+This means that
+
+    $cphash{KEY}    $cphash{key}
+    $cphash{Key}    $cphash{keY}
+
+all refer to the same entry.  Also, the hash remembers which form of
+the key was last used to store the entry.  The `keys' and `each'
+functions will return the key that was used to set the value.
+
+
+
+INSTALLATION
+
+To install this module, run the following commands:
+
+{{ $t->build_instructions }}
+
+While Tie::CPHash should function with any version of Perl 5, the
+build system requires at least Perl 5.006.  To install on older
+versions of Perl, you'll have to manually copy lib/Tie/CPHash.pm to
+your Perl library search path.
+
+
+
+DEPENDENCIES
+
+{{ $t->dependency_list }}
+
+
+
+CHANGES
+    Here's what's new in version {{$version}} of Tie-CPHash:
+    (See the file "Changes" for the full revision history.)
+
+{{$changes}}
+
+
+
+COPYRIGHT AND LICENSE
+
+{{ local $_ = $zilla->license->notice; chomp; $_ }}

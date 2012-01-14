@@ -1,6 +1,6 @@
 #! /usr/bin/perl
 #---------------------------------------------------------------------
-# $Id$
+# 10-CPHash.t
 # Copyright 1997 Christopher J. Madsen
 #
 # This program is free software; you can redistribute it and/or modify

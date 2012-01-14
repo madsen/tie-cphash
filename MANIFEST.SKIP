@@ -8,7 +8,8 @@
 ^MANIFEST\.
 ^Makefile$
 ^Makefile.old$
-^README.PL
+^MYMETA\.
+^README\.md
 ^(?i)TODO.txt
 ^announce.txt$
 ^blib/
@@ -19,3 +20,5 @@
 ^_build\b
 ^Build$
 ^Build.bat$
+^dist\.ini$
+^tools/loom\.pl

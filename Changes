@@ -1,8 +1,9 @@
 Revision history for Perl extension Tie::CPHash.
 
-1.05   NOT
+1.05   January 20, 2012
 	- no functional changes
 	- now built with Dist::Zilla (includes v2 META.json)
+	- repository now publicly available on GitHub
 
 1.04   April 26, 2008
 	- no functional changes

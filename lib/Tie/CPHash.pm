@@ -25,7 +25,7 @@ use vars qw($VERSION);
 #=====================================================================
 # Package Global Variables:
 
-$VERSION = '1.05';
+$VERSION = '1.06';
 # This file is part of {{$dist}} {{$dist_version}} ({{$date}})
 
 #=====================================================================

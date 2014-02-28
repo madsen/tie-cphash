@@ -15,12 +15,12 @@
 #---------------------------------------------------------------------
 #########################
 
-use Test::More tests => 16;
+use Test::More tests => 18;
 BEGIN { use_ok('Tie::CPHash') };
 
 #########################
 
-my(%h,$j,$test);
+my(%h,$j,%i,$test);
 
 tie(%h, 'Tie::CPHash');
 ok(1, 'tied %h');
@@ -68,6 +68,10 @@ SKIP: {
   skip 'SCALAR added in Perl 5.8.3', 1 unless $] >= 5.008003;
   ok(!scalar %h, 'SCALAR now empty');
 };
+
+tie( %i, 'Tie::CPHash', Hello => 'World' );
+is( $i{hello}, 'World' );
+is( tied(%i)->key('hello'), 'Hello' );
 
 # Local Variables:
 # mode: perl

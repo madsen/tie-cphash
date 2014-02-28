@@ -1,5 +1,8 @@
 Revision history for Perl extension Tie::CPHash.
 
+1.07   2014-02-27
+	- Add constructor LIST support
+
 1.06   2013-11-09
 	- no functional changes
 	- release tests moved to xt/

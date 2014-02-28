@@ -25,19 +25,23 @@ use vars qw($VERSION);
 #=====================================================================
 # Package Global Variables:
 
-$VERSION = '1.06';
+$VERSION = '1.07';
 # This file is part of {{$dist}} {{$dist_version}} ({{$date}})
 
 #=====================================================================
 # Tied Methods:
 #---------------------------------------------------------------------
-# TIEHASH classname
+# TIEHASH classname LIST
 #      The method invoked by the command `tie %hash, classname'.
 #      Associates a new hash instance with the specified class.
 
 sub TIEHASH
 {
-    bless {}, $_[0];
+    my $self = bless {}, $_[0];
+    for ( my $i = 1; $i < @_; $i+=2 ) {
+        $self->STORE( $_[$i], $_[$i+1] )
+    }
+    return $self;
 } # end TIEHASH
 
 #---------------------------------------------------------------------

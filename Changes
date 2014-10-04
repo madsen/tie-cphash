@@ -1,5 +1,9 @@
 Revision history for Perl extension Tie::CPHash.
 
+1.900  NOT (Trial Release)
+	- new method: add
+	- can now pass an initial list while tying
+
 1.06   2013-11-09
 	- no functional changes
 	- release tests moved to xt/
@@ -21,11 +25,11 @@ Revision history for Perl extension Tie::CPHash.
 	- updated my email address
 
 1.02   2006-03-12
-	- Added SCALAR method (thanks to Yitzchak Scott-Thoennes)
+	- added SCALAR method (thanks to Yitzchak Scott-Thoennes)
 	- updated my email address
 
 1.001  1998-10-25
 	- updated my email address
 
 1.000  1998-01-15
-	- First public release; created by h2xs 1.18
+	- first public release; created by h2xs 1.18

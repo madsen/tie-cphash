@@ -13,12 +13,10 @@
 #
 # Test the Tie::CPHash module
 #---------------------------------------------------------------------
-#########################
 
-use Test::More tests => 16;
-BEGIN { use_ok('Tie::CPHash') };
+use Test::More 0.88 tests => 23; # done_testing
 
-#########################
+use Tie::CPHash;
 
 my(%h,$j,$test);
 
@@ -39,7 +37,7 @@ SKIP: {
 $h{Hello} = 'World';
 $j = $h{HeLLo};
 is(           $j => 'World',  'HeLLo - World');
-is((keys %h)[-1] => 'Hello',  'last key Hello');
+is_deeply([keys %h] => ['Hello'],  'last key Hello');
 
 ok(exists($h{Hello}), "Hello now exists");
 
@@ -62,12 +60,37 @@ SKIP: {
 
 is(tied(%h)->key('hello') => undef,  'hello not in keys');
 
+tied(%h)->add(qw(HeLlO world));
+
+is($h{world}, 'HW', 'World still exists');
+is($h{hello}, 'world', 'hello was pushed');
+
+is(tied(%h)->key('hello') => 'HeLlO',  'hello is HeLlO');
+is(tied(%h)->key('world') => 'World',  'world is World');
+
 %h = ();
 
 SKIP: {
   skip 'SCALAR added in Perl 5.8.3', 1 unless $] >= 5.008003;
   ok(!scalar %h, 'SCALAR now empty');
 };
+
+{
+  my %i;
+
+  tie( %i, 'Tie::CPHash', Hello => 'World');
+  is( $i{hello}, 'World', 'initialized from list' );
+  is( tied(%i)->key('hello'), 'Hello', 'list remembers case' );
+}
+
+{
+  tie( my %i, 'Tie::CPHash', qw(Hello World  hello world));
+
+  is( $i{Hello}, 'world', '1 line initialized from list');
+  is( tied(%i)->key('Hello'), 'hello', '1 line remembers case');
+}
+
+done_testing;
 
 # Local Variables:
 # mode: perl

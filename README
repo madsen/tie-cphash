@@ -19,11 +19,6 @@ To install this module, run the following commands:
 
 {{ $t->build_instructions }}
 
-While Tie::CPHash should function with any version of Perl 5, the
-build system requires at least Perl 5.006.  To install on older
-versions of Perl, you'll have to manually copy lib/Tie/CPHash.pm to
-your Perl library search path.
-
 
 
 DEPENDENCIES

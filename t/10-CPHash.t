@@ -14,6 +14,10 @@
 # Test the Tie::CPHash module
 #---------------------------------------------------------------------
 
+use 5.006;
+use strict;
+use warnings;
+
 use Test::More 0.88 tests => 23; # done_testing
 
 use Tie::CPHash;

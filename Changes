@@ -3,6 +3,7 @@ Revision history for Perl extension Tie::CPHash.
 1.900  NOT (Trial Release)
 	- new method: add
 	- can now pass an initial list while tying
+	- now requires Perl 5.6.0 or later
 
 1.06   2013-11-09
 	- no functional changes

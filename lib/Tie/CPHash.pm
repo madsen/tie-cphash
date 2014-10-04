@@ -17,15 +17,14 @@ package Tie::CPHash;
 # ABSTRACT: Case preserving but case insensitive hash table
 #---------------------------------------------------------------------
 
-require 5.000;
+use 5.006;
 use strict;
-#use warnings;         # Wasn't core until 5.6.0
-use vars qw($VERSION);
+use warnings;
 
 #=====================================================================
 # Package Global Variables:
 
-$VERSION = '1.900'; # TRIAL RELEASE
+our $VERSION = '1.900'; # TRIAL RELEASE
 # This file is part of {{$dist}} {{$dist_version}} ({{$date}})
 
 #=====================================================================

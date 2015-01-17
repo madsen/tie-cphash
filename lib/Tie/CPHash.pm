@@ -24,7 +24,7 @@ use warnings;
 #=====================================================================
 # Package Global Variables:
 
-our $VERSION = '1.900'; # TRIAL RELEASE
+our $VERSION = '2.000';
 # This file is part of {{$dist}} {{$dist_version}} ({{$date}})
 
 #=====================================================================
@@ -129,15 +129,21 @@ sub CLEAR
   tied(%h)->add( key => value, ... );
   tied(%h)->add( \@list_of_key_value_pairs );
 
-This method adds keys and values to the hash.  It's just like
+This method (introduced in version 2.000) adds keys and values to the hash.
+It's just like
 
-  %hash = @list_of_key_value_pairs;
+  %h = @list_of_key_value_pairs;
 
 except that it doesn't clear the hash first.  It accepts either a list
-or an arrayref.  It dies if the list has an odd number of entries.
+or an arrayref.  It croaks if the list has an odd number of entries.
+It returns the tied hash object.
+
+If the list contains duplicate keys, the last S<C<< key => value >>>
+pair in the list wins.  (You can't pass a hashref to C<add> because it
+would be ambiguous which key would win if two keys differed only in case.)
 
 For people used to L<Tie::IxHash>, C<add> is aliased to both C<Push>
-and C<Unshift>.
+and C<Unshift>.  (Tie::CPHash does not preserve the order of keys.)
 
 =diag Odd number of elements in CPHash add
 
@@ -198,7 +204,7 @@ __END__
 
 =head1 SYNOPSIS
 
-    require Tie::CPHash;
+    use Tie::CPHash 2; # allows initialization during tie
     tie %cphash, 'Tie::CPHash', key => 'value';
 
     $cphash{'Hello World'} = 'Hi there!';
@@ -220,13 +226,17 @@ functions will return the key that was used to set the value.
 
 An example should make this clear:
 
-    tie %h, 'Tie::CPHash';
-    $h{Hello} = 'World';
+    tie %h, 'Tie::CPHash', Hello => 'World';
     print $h{HELLO};            # Prints 'World'
     print keys(%h);             # Prints 'Hello'
     $h{HELLO} = 'WORLD';
     print $h{hello};            # Prints 'WORLD'
     print keys(%h);             # Prints 'HELLO'
+
+Tie::CPHash version 2.000 introduced the ability to pass a list of
+S<C<< key => value >>> pairs to initialize the hash (along with the
+C<add> method that powers it).  The list must include a value for
+each key, or the constructor will croak.
 
 The additional C<key> method lets you fetch the case of a specific key:
 
@@ -238,6 +248,8 @@ The additional C<key> method lets you fetch the case of a specific key:
 If you need a case insensitive hash, but don't need to preserve case,
 just use C<$hash{lc $key}> instead of C<$hash{$key}>.  This has a lot
 less overhead than Tie::CPHash.
+
+C<use Tie::CPHash;> does not export anything into your namespace.
 
 =for Pod::Coverage
 Push
